@@ -1,0 +1,55 @@
+<div class="container">
+  <!-- vehicle menu -->
+  <div class="row" style="margin-top:12px;">
+    <div class="col-md-8">
+      <input type="text"
+             [(ngModel)]="searchString"
+             class="form-control"
+             style="width: 150%;"
+             placeholder="Search vehicle...">
+    </div>
+  </div>
+  <!-- vehicle content -->
+  <div class="row" style="margin-top: 28px;">
+    <!-- vehicle Menu -->
+    <div class="col-md-3">
+      <br>
+      <div class="list-group list-group-flush">
+        <a  class="list-group-item list-group-item-action">
+          <i class="fa fa-cab"></i>&nbsp;All Vehicles
+        </a>
+        <a *ngFor="let vehicle of vehicles | filtering:searchString" (click)="selectedVehicle(vehicle)"
+           class="list-group-item list-group-item-action">
+          <i class="fa fa-cab"></i>&nbsp;{{vehicle["model"]}}
+        </a>
+      </div>
+    </div>
+
+    <!-- vehicle Panel -->
+    <div class="col-md-9" [hidden]="isSelected()">
+      <div>
+        <mat-grid-list cols="4" rowHeight="50px">
+          <mat-grid-tile class="border border-success"> Plate Number: {{selectedVehicleDetails["plateNumber"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Make: {{selectedVehicleDetails["make"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Model: {{selectedVehicleDetails["model"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Trip Meter: {{selectedVehicleDetails["tripMeter"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Transmission: {{transmission()}}{{Transmission}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Available: {{availability()}}{{available}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Rent Fee (Rs/km): {{selectedVehicleDetails["rentFee"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Engine Capacity: {{selectedVehicleDetails["engineCapacity"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Fuel Type: {{selectedVehicleDetails["fuelType"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Vehicle Type: {{selectedVehicleDetails["type"]}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Number of Seats: {{numberOFSeat()}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Number of Doors: {{numberOFDoors()}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Air conditioned: {{isAirConditioned()}}{{aircondition}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Body Type: {{bodyType()}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Storage Space: {{storageSpace()}}</mat-grid-tile>
+          <mat-grid-tile class="border border-success">Side Car: {{sideCar()}}</mat-grid-tile>
+        </mat-grid-list>
+      </div>
+
+      <br><br>
+      <app-bookings></app-bookings>
+    </div>
+  </div>
+</div>

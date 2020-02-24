@@ -1,0 +1,52 @@
+<div>
+  <div style="width: 100%"  >
+<!--    to get the user dates-->
+    <div class="float-left" style="padding-right: 30px">
+      <label>
+        <input type="Date"
+               class="form-control"
+        [(ngModel)]="userPickUp">
+      </label>
+    </div>
+    <div class="float-left" style="padding-right: 50px">
+      <label>
+        <input type="Date"
+               class="form-control"
+               [(ngModel)]="userDropOff">
+      </label>
+    </div>
+<!--    check availability button-->
+    <button type="button" class="btn btn-primary btn-md" style="margin-bottom: 20px"  (click)="checkBooking()">
+      Check Availability
+    </button>
+  </div>
+  <div>
+    <div style="width:70%" *ngIf="isBooked" class="bg-danger rounded">
+      <h3 class="text-light font-weight-light">The date you have Selected have been booked</h3>
+    </div>
+  </div>
+  <div style="width:70%" *ngIf="appearForm" class="bg-success rounded">
+    <h3 class="text-light font-weight-light">Your date is available...Book ASAP!!!</h3>
+  </div>
+<!--  a form to get the details of the user when booking-->
+  <form style="margin-bottom: 100px;border:3px solid green;" *ngIf="appearForm" >
+    <div class = "form-group offset-md-1">
+      <label for="firstName" style="margin-top: 20px">First Name</label>
+      <input type="text" id = "firstName" class="form-control" style="width: 90%" name="firstname" [(ngModel)] ="userFirstName">
+    </div>
+    <div class = "form-group offset-md-1">
+      <label for="lastName" style="margin-top: 10px">Last Name</label>
+      <input type="text" id = "lastName" class="form-control" style="width: 90%" name="lastname" [(ngModel)] ="userLastName">
+    </div>
+    <div class = "form-group offset-md-1">
+      <label for="contact" style="margin-top: 10px" >Contact Number:</label>
+      <input type="number" id = "contact" class="form-control" style="width: 90%" name="number" [(ngModel)]="userContactNumber">
+    </div>
+    <div class = "form-group offset-md-1">
+      <label for="email" style="margin-top: 10px">Email</label>
+      <input type="email" id = "email" class="form-control" style="width: 90%" name="email" [(ngModel)]="userEmail">
+    </div>
+    <button type="submit" style="margin-bottom: 20px" class="btn btn-primary btn-lg offset-md-5" (click)="vehicleBooking()">Book Now</button>
+  </form>
+
+</div>
